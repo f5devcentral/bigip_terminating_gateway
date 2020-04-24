@@ -15,7 +15,7 @@ limitations under the License.
 -->
 
 # Contributing Guide for bigip_terminating_gateway
-The f5-openstack-docs repo may be private, but any F5 Networks organization member or partner is welcome to contribute! Please feel free to report issues, make corrections, or contribute material according to the guidelines laid out here.
+The bigip_terminating_gateway repo may be private, but any F5 Networks organization member or partner is welcome to contribute! Please feel free to report issues, make corrections, or contribute material according to the guidelines laid out here.
 
 ## Issues
 Creating issues is good, creating good issues is even better. Please be specific when opening issues and include:
