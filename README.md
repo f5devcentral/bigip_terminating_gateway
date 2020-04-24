@@ -36,7 +36,7 @@ terraform plan
 terraform apply
 ```
 
-  - This will create BIG-IP, consul connect, NGINX instances on AWS
+  - This will create BIG-IP, consul connect, client vm, NGINX instance on AWS
   - This will also seed a `terraform.tfvars` file in the `as3` directory for use in the next step
   - This step
   - It may take up to 5 minutes or after the run is complete for the environment to become ready. The URL for the BIG-IP UI is provided as part of the output.  Verify you can reach the UI before proceeding.
@@ -56,6 +56,13 @@ terraform apply
 - Do terraform plan & apply, this will deploy the AS3 declarative JSON for service discovery on BIG-IP. It will use as3.tf file. You can review the `terraform.tfvars` file that was generated in the previous step or rename and edit `terraform.tfvars.example` file in that directory to pass the necessary variables to terraform, or enter them manually via the CLI, copying the format of the values in the file.
 - Now you have Virtual IP and Pool information already configured on BIG-IP in partition defined in the consul.json file.
 
+# Few manual steps
+
+- Once all the instances are UP do the following 
+1. Run the command ```consul connect proxy -sidecar-for client``` on the client vm
+2. Extract Root cert & leaf cert for bigipapp1 application using the below commands
+   ```curl --silent http://IP_address_ofconsul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .CertPEM > bigipapp1.cert
+   curl --silent http://IP_address_of_consul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .PrivateKeyPEM > bigipapp1.pem
 # How to test?
 
 ### Folder as3
