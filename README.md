@@ -62,10 +62,11 @@ terraform apply
 Folder as3 has three files, `main.tf`, `nginx.json` and `variables.tf`. `main.tf` is used to provision `nginx.json` template to BIG-IP once its ready.
 This module attempts to download the rpom automatically, but you can also download the AS3 rpm module from https://github.com/F5Networks/f5-appsvcs-extension before doing terraform apply.
 
-### Folder scripts
-`consul.sh` is used to install consul
+### Folder services
+`client.sh` is used to deploy client vm which exists in consul mesh
+`consul.sh` is used to install consul connect
 `f5.tpl` is used to change the admin password.
-`nginx.sh` is used to install consul agent on nginx servers
+`nginx.sh` is used to install  nginx servers
 
 
 ### Product Versions
