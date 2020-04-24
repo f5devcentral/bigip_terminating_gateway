@@ -62,9 +62,9 @@ terraform apply
 1. Run the command ```consul connect proxy -sidecar-for client``` on the client vm
 2. Extract Root cert & leaf cert for bigipapp1 application using the below commands
 
-```curl --silent http://IP_address_ofconsul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .CertPEM > bigipapp1.cert``` 
+   ```curl --silent http://IP_address_ofconsul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .CertPEM >   bigipapp1.cert``` 
    
-```curl --silent http://IP_address_of_consul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .PrivateKeyPEM > bigipapp1.pem```
+   ```curl --silent http://IP_address_of_consul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .PrivateKeyPEM > bigipapp1.pem```
 
 # How to test?
 
