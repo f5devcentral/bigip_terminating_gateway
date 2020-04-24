@@ -4,7 +4,7 @@
 # Demo
 
 # Architecture
-![Demo Arch](assets/tg.png)
+![Demo Arch](docs/tg.png)
 
 # How to use this repo
 
