@@ -59,7 +59,7 @@ terraform apply
 # How to test?
 
 ### Folder as3
-Folder as3 has three files, `main.tf`, `nginx.json` and `variables.tf`. `main.tf` is used to provision `nginx.json` template to BIG-IP once its ready.
+Folder as3 has three files, `main.tf`, `bigipapp1.json` and `variables.tf`. `main.tf` is used to provision `bigipapp1.json` template to BIG-IP once its ready.
 This module attempts to download the rpom automatically, but you can also download the AS3 rpm module from https://github.com/F5Networks/f5-appsvcs-extension before doing terraform apply.
 
 ### Folder services
@@ -70,6 +70,6 @@ This module attempts to download the rpom automatically, but you can also downlo
 
 
 ### Product Versions
-- BIG-IP image used is 14.1 version
+- BIG-IP image used is 15.1 version
 - AS3 rpm used is [3.17.1 version](https://github.com/F5Networks/f5-appsvcs-extension/raw/v3.17.1/dist/latest/f5-appsvcs-3.17.1-1.noarch.rpm)
 - HashiCorp & F5 based on https://clouddocs.f5.com/cloud/public/v1/aws/AWS_singleNIC.html
