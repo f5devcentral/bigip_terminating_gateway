@@ -1,5 +1,5 @@
 variable "prefix" {
   description = "prefix for resources created"
-  default     = "scs-tg-demo"
+  default     = "scs-term-gw-demo"
 }
 
