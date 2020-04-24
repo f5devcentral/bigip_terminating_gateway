@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# Contributing Guide for f5-openstack-docs
+# Contributing Guide for bigip_terminating_gateway
 The f5-openstack-docs repo may be private, but any F5 Networks organization member or partner is welcome to contribute! Please feel free to report issues, make corrections, or contribute material according to the guidelines laid out here.
 
 ## Issues
