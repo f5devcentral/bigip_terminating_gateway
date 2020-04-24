@@ -24,7 +24,7 @@ The `terraform` directory has tf files for creating instances for Consul Connect
 - Clone the repository & change working directory to terraform
 ```
 git clone https://github.com/f5devcentral/bigip_consul_tg.git
-cd bigip_consul_tg
+cd tffiles
 ```
 - Create Terraform run
 - Modify `terraform.tfvars.example` and add a prefix to identify your resources
