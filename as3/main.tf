@@ -21,7 +21,7 @@ resource "null_resource" "install_as3" {
 
 # deploy application using as3
 resource "bigip_as3" "vs_app" {
-  as3_json    = file("example1.json")
+  as3_json    = file("bigipapp1.json")
   config_name = "VS_for_app"
   depends_on  = [null_resource.install_as3]
 }
