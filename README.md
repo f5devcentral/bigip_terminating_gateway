@@ -68,6 +68,8 @@ terraform apply
 
    ```curl --silent http://10.0.0.100:8500/v1/agent/connect/ca/roots | jq --raw-output .Roots[0].RootCert > rootcert.pem```
 
+We need to create a Client SSL Profile using these certificates. Make sure enable default SNI and assign the SSL Client profile to the virtual Server
+
 # What are the services registered & running?
 - Here we have two applications running a] Client application named as "client" which is running in the   service mesh on a vm. and b] BIG-IP instance with Virtual Server and NGINX server running as pool memb  er. Below are the hcl files for both services
 
