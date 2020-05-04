@@ -67,6 +67,34 @@ terraform apply
    ```curl --silent http://IP_address_of_consul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .PrivateKeyPEM > bigipapp1.pem```
 
 # How to test?
+- Here we have two applications running a] Client application named as "client" which is running in the   service mesh on a vm. and b] BIG-IP instance with Virtual Server and NGINX server running as pool memb  er. Below are the hcl files for both services
+
+a] Client service
+```
+{
+	"service": {
+		"name": "client",
+		"port": 80,
+		"checks": [{
+			"id": "client",
+			"name": "nginx TCP Check",
+			"tcp": "10.0.0.111:80",
+			"interval": "10s",
+			"timeout": "1s"
+		}],
+		"connect": {
+			"sidecar_service": {
+				"proxy": {
+					"upstreams": [{
+						"destination_name": "bigipapp1",
+						"local_bind_port": 9191
+					}]
+				}
+			}
+		}
+	}
+}
+```
 
 ### Folder as3
 Folder as3 has three files, `main.tf`, `bigipapp1.json` and `variables.tf`. `main.tf` is used to provision `bigipapp1.json` template to BIG-IP once its ready.
