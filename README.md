@@ -95,6 +95,29 @@ a] Client service
 	}
 }
 ```
+above ```bigipapp1``` is the nginx server running as a legacy app which is pool member behind the bigip virtual server. Its using local port as 9191. ```client``` is the application running in the consul mesh on a vm.
+
+b] HCL file for BIG-IP Service
+
+```service {
+  name = "bigipapp1"
+  address = "10.0.0.173"
+  port = 80
+  connect {
+    sidecar_service {
+      #BIG-IP address and port 
+      address = "10.0.0.200"
+      port = 8080
+      proxy {
+        # nginx IP address 
+      local_service_address = "10.0.0.200"
+         }
+       }
+     }
+  } ```
+Above hcl is running directly on the consul cluster, ```bigipapp1``` is the nginx server acting as legacy app running behind the virtual server, which is also pool member on the bigip and its ip address is 10.0.0.171. ```10.0.0.200``` is the virtual service ip which is listening at port ```8080```.
+
+ 
 
 ### Folder as3
 Folder as3 has three files, `main.tf`, `bigipapp1.json` and `variables.tf`. `main.tf` is used to provision `bigipapp1.json` template to BIG-IP once its ready.
