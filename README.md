@@ -101,7 +101,8 @@ above ```bigipapp1``` is the nginx server running as a legacy app which is pool 
 
 b] HCL file for BIG-IP Service
 
-```service {
+```
+ service {
   name = "bigipapp1"
   address = "10.0.0.173"
   port = 80
