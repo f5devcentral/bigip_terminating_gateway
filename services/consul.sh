@@ -67,7 +67,7 @@ EOF
 cat << EOF > /etc/consul.d/bigipapp1.hcl
 service {
   name = "bigipapp1"
-  address = "10.0.0.173"
+  address = "10.0.0.171"
   port = 80
   connect {
     sidecar_service {
