@@ -66,7 +66,9 @@ terraform apply
    
    ```curl --silent http://IP_address_of_consul:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .PrivateKeyPEM > bigipapp1.pem```
 
-# How to test?
+   ```curl --silent http://10.0.0.100:8500/v1/agent/connect/ca/roots | jq --raw-output .Roots[0].RootCert > rootcert.pem```
+
+# What are the services registered & running?
 - Here we have two applications running a] Client application named as "client" which is running in the   service mesh on a vm. and b] BIG-IP instance with Virtual Server and NGINX server running as pool memb  er. Below are the hcl files for both services
 
 a] Client service
@@ -114,9 +116,45 @@ b] HCL file for BIG-IP Service
          }
        }
      }
-  } ```
+  } 
+```
 Above hcl is running directly on the consul cluster, ```bigipapp1``` is the nginx server acting as legacy app running behind the virtual server, which is also pool member on the bigip and its ip address is 10.0.0.171. ```10.0.0.200``` is the virtual service ip which is listening at port ```8080```.
 
+
+### How to Test ?
+From the vm which has the client application running, issue the command as shown below
+
+```
+ curl http://localhost:9191
+
+```
+You should get reponse from the legacy app the nginx server 10.0.0.171
+
+```
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Hello World</title>
+<link href="data:image/png;base64
+
+....
+<p><span>Server&nbsp;address:</span> <span>10.0.0.171:80</span></p>
+<p><span>Server&nbsp;name:</span> <span>ip-10-0-0-171</span></p>
+<p class="smaller"><span>Date:</span> <span>04/May/2020:20:37:32 +0000</span></p>
+<p class="smaller"><span>URI:</span> <span>/</span></p>
+</div>
+<div class="check"><input type="checkbox" id="check" onchange="changeCookie()"> Auto Refresh</div>
+    <div id="footer">
+        <div id="center" align="center">
+            Request ID: c71103d8da24b68aed5a0995ee72f671<br/>
+            &copy; NGINX, Inc. 2018
+        </div>
+    </div>
+</body>
+</html>
+
+```
  
 
 ### Folder as3
