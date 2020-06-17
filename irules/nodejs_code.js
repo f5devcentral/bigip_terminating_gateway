@@ -5,9 +5,13 @@ const f5 = require("f5-nodejs");
 var ilx = new f5.ILXServer();
 ilx.addMethod('func', function(req, res) {
 var retstr = "";
-var target = req.params()[0];
+var sni_name = req.params()[0];
 var spiffe = req.params()[1];
 var serial_id = req.params()[2];
+const regex = /[^.]*/;
+let targetarr = sni_name.match(regex);
+target = targetarr.toString();
+console.log('Target is --------------------> ', target.toString());
 console.log('My Spiffe ID is: ', spiffe);
 console.log('My Serial ID is: ', serial_id);
 //Construct request payload
