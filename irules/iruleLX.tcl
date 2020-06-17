@@ -1,6 +1,6 @@
  when RULE_INIT {
     #set static::sb_debug to 2 if you want to enable logging to troubleshoot this iRule, 1 for informational messages, otherwise set to 0
-    set static::sb_debug 2
+    set static::sb_debug 0
     if {$static::sb_debug > 1} { log local0. "rule init" }
 }
 
