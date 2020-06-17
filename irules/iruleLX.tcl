@@ -17,14 +17,11 @@ when CLIENTSSL_HANDSHAKE {
     }
     # use the ternary operator to return the servername conditionally
     if {$static::sb_debug > 1} { log local0. "sni name: [expr {[info exists sni_name] ? ${sni_name} : {not found} }]"}
-   # set target $sni_name
-   # log local0. " *******************************************new sni name is : $target"
 }
 
 when CLIENTSSL_CLIENTCERT {
   log local0. "In CLIENT SSL  "
   set client_cert [SSL::cert 0]
-  log local0. "[X509::whole $client_cert]"
 }
 
 when HTTP_REQUEST {

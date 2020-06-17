@@ -11,7 +11,6 @@ var serial_id = req.params()[2];
 const regex = /[^.]*/;
 let targetarr = sni_name.match(regex);
 target = targetarr.toString();
-console.log('Target is --------------------> ', target.toString());
 console.log('My Spiffe ID is: ', spiffe);
 console.log('My Serial ID is: ', serial_id);
 //Construct request payload
