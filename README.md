@@ -63,15 +63,15 @@ terraform apply
    The above command injects inbuild sidecar proxy available with consul connect
    If we need Envoy as a Sidecar proxy do the following
 
-  ```curl -L https://getenvoy.io/cli | sudo bash -s -- -b /usr/local/bin```
+   ```curl -L https://getenvoy.io/cli | sudo bash -s -- -b /usr/local/bin```
 
-  ```getenvoy run standard:1.13.0 -- --version```
+   ```getenvoy run standard:1.13.0 -- --version```
 
-  ```sudo cp ~/.getenvoy/builds/standard/1.13.0/linux_glibc/bin/envoy /usr/local/bin/```
+   ```sudo cp ~/.getenvoy/builds/standard/1.13.0/linux_glibc/bin/envoy /usr/local/bin/```
 
-  ```envoy --version```
+   ```envoy --version```
 
-  ```consul connect envoy -sidecar-for client```
+   ```consul connect envoy -sidecar-for client```
 
 2. Extract Root cert & leaf cert for bigipapp1 application using the below commands
 
