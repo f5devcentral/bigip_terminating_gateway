@@ -60,6 +60,14 @@ terraform apply
 
 - Once all the instances are UP do the following 
 1. Run the command ```consul connect proxy -sidecar-for client``` on the client vm
+   The above command injects inbuild sidecar proxy available with consul connect
+   If we need Envoy as a Sidecar proxy do the following
+
+  ```curl -L https://getenvoy.io/cli | sudo bash -s -- -b /usr/local/bin```
+  ```getenvoy run standard:1.13.0 -- --version```
+  ```sudo cp ~/.getenvoy/builds/standard/1.13.0/linux_glibc/bin/envoy /usr/local/bin/```
+  ```envoy --version```
+  ```consul connect envoy -sidecar-for client```
 2. Extract Root cert & leaf cert for bigipapp1 application using the below commands
 
    ```curl --silent http://10.0.0.100:8500/v1/agent/connect/ca/leaf/bigipapp1 | jq --raw-output .CertPEM >   bigipapp1.cert``` 
