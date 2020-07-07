@@ -59,7 +59,7 @@ ui = false
 server = false
 EOF
 
-cat << EOF > /etc/consul.d/client.hcl
+cat << EOF > /etc/consul.d/microapp1.hcl
 advertise_addr = "${local_ipv4}"
 retry_join = ["provider=aws tag_key=Env tag_value=consul"]
 ports {
@@ -74,10 +74,10 @@ EOF
 cat << EOF > /etc/consul.d/nginx.json
 {
 	"service": {
-		"name": "client",
+		"name": "microapp1",
 		"port": 80,
 		"checks": [{
-			"id": "client",
+			"id": "microapp1",
 			"name": "nginx TCP Check",
 			"tcp": "10.0.0.111:80",
 			"interval": "10s",
