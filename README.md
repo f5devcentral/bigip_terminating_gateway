@@ -13,7 +13,7 @@
 The `terraform` directory has tf files for creating instances for Consul Connect, f5, iam policy, Client machine,  nginx servers. 
 
 - `main.tf` refers to what region is used on aws.
-- `client.tf` is used to create ubuntu machine to test curl / http 
+- `microapp1.tf` is used to create ubuntu machine to test curl / http 
 - `bigipapp1.tf` is used to configure nginx server which act as a legacy app.
 - `ssh.tf` is used to create the key pairs.
 - `vpc.tf` is used to create a new vpc and also to define the aws security groups.
@@ -36,7 +36,7 @@ terraform plan
 terraform apply
 ```
 
-  - This will create BIG-IP, consul connect, client vm, NGINX instance on AWS
+  - This will create BIG-IP, consul connect, microapp1 vm, NGINX instance on AWS
   - This will also seed a `terraform.tfvars` file in the `as3` directory for use in the next step
   - This step
   - It may take up to 5 minutes or after the run is complete for the environment to become ready. The URL for the BIG-IP UI is provided as part of the output.  Verify you can reach the UI before proceeding.
@@ -59,7 +59,7 @@ terraform apply
 # Few manual steps
 
 - Once all the instances are UP do the following 
-1. Run the command ```consul connect proxy -sidecar-for client``` on the client vm
+1. Run the command ```consul connect proxy -sidecar-for microapp1``` on the microapp1 vm
    The above command injects inbuild sidecar proxy available with consul connect
    If we need Envoy as a Sidecar proxy do the following
 
@@ -71,7 +71,7 @@ terraform apply
 
    ```envoy --version```
 
-   ```consul connect envoy -sidecar-for client```
+   ```consul connect envoy -sidecar-for microapp1```
 
 2. Extract Root cert & leaf cert for bigipapp1 application using the below commands
 
@@ -85,16 +85,16 @@ terraform apply
 4. We need to enable iLX resource on BIG-IP and configure iLX iRules workspace, documentation is at https://f5-agility-labs-irules.readthedocs.io/en/latest/class3/module1/lab1.html & https://clouddocs.f5.com/api/irules/ILX.html. Use the iRule and node JS code which is inthe irule directory
 
 # What are the services registered & running?
-- Here we have two applications running a] Client application named as "client" which is running in the   service mesh on a vm. and b] BIG-IP instance with Virtual Server and NGINX server running as pool memb  er. Below are the hcl files for both services
+- Here we have two applications running a] Client application named as "microapp1" which is running in the   service mesh on a vm. and b] BIG-IP instance with Virtual Server and NGINX server running as pool memb  er. Below are the hcl files for both services
 
 a] Client service
 ```
 {
 	"service": {
-		"name": "client",
+		"name": "microapp1",
 		"port": 80,
 		"checks": [{
-			"id": "client",
+			"id": "microapp1",
 			"name": "nginx TCP Check",
 			"tcp": "10.0.0.111:80",
 			"interval": "10s",
@@ -113,7 +113,7 @@ a] Client service
 	}
 }
 ```
-above ```bigipapp1``` is the nginx server running as a legacy app which is pool member behind the bigip virtual server. Its using local port as 9191. ```client``` is the application running in the consul mesh on a vm.
+above ```bigipapp1``` is the nginx server running as a legacy app which is pool member behind the bigip virtual server. Its using local port as 9191. ```microapp1``` is the application running in the consul mesh on a vm.
 
 b] HCL file for BIG-IP Service
 
@@ -139,7 +139,7 @@ Above hcl is running directly on the consul cluster, ```bigipapp1``` is the ngin
 
 
 ### How to Test ?
-From the vm which has the client application running, issue the command as shown below
+From the vm which has the microapp1 application running, issue the command as shown below
 
 ```
  curl http://localhost:9191
@@ -179,7 +179,7 @@ Folder as3 has three files, `main.tf`, `bigipapp1.json` and `variables.tf`. `mai
 This module attempts to download the rpom automatically, but you can also download the AS3 rpm module from https://github.com/F5Networks/f5-appsvcs-extension before doing terraform apply.
 
 ### Folder services
-`client.sh` is used to deploy client vm which exists in consul mesh
+`microapp1.sh` is used to deploy microapp1 vm which exists in consul mesh
 `consul.sh` is used to install consul connect
 `f5.tpl` is used to change the admin password.
 `nginx.sh` is used to install  nginx servers
