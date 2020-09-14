@@ -1,7 +1,9 @@
 # BIG-IP Terminating Gateway with Consul Connect
-- This repository will provision BIG-IP VE (Pay as you Grow), Consul Connect & NGINX servers in AWS
+## What is a Terminating Gateway
+As part of digital transformation strategy, an increasing number of enterprises are embracing containers for their green field applications. Naturally, modernizing their existing applications is also part of this strategy. Due to various reasons such as complexity and cost, enterprises end up having applications spanning on multiple platforms such as bare metal, virtual machines, or containers. A service mesh solution such as Consul Connect is typically deployed to ensure intelligent communications between services running on disparate environments. Sometimes, services under a mesh will need to communicate securely with an external service. Enter terminating gateways.
 
 # Demo
+- This repository will provision BIG-IP VE (Pay as you Grow), Consul Connect & NGINX servers in AWS
 
 # Architecture
 ![Demo Arch](docs/tg.png)
