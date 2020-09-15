@@ -84,7 +84,6 @@ terraform apply
    ```curl --silent http://10.0.0.100:8500/v1/agent/connect/ca/roots | jq --raw-output .Roots[0].RootCert > rootcert.pem```
 
 3. We need to create a Client SSL Profile using these certificates. Make sure enable default SNI and assign the SSL Client profile to the virtual Server
-4. We need to enable iLX resource on BIG-IP and configure iLX iRules workspace, documentation is at https://f5-agility-labs-irules.readthedocs.io/en/latest/class3/module1/lab1.html & https://clouddocs.f5.com/api/irules/ILX.html. Use the iRule and node JS code which is inthe irule directory
 
 # What are the services registered & running?
 - Here we have two applications running a] Client application named as "microapp1" which is running in the   service mesh on a vm. and b] BIG-IP instance with Virtual Server and NGINX server running as pool memb  er. Below are the hcl files for both services
