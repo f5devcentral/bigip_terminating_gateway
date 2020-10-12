@@ -1,3 +1,5 @@
+# This repo was POC Please refer to https://github.com/f5devcentral/bigip-tgw
+
 # BIG-IP Terminating Gateway with Consul Connect
 ## What is a Terminating Gateway
 As part of digital transformation strategy, an increasing number of enterprises are embracing containers for their green field applications. Naturally, modernizing their existing applications is also part of this strategy. Due to various reasons such as complexity and cost, enterprises end up having applications spanning on multiple platforms such as bare metal, virtual machines, or containers. A service mesh solution such as Consul Connect is typically deployed to ensure intelligent communications between services running on disparate environments. Sometimes, services under a mesh will need to communicate securely with an external service. Enter terminating gateways.
